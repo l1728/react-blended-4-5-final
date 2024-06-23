@@ -36,7 +36,6 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
-       //✔ Add base currency here !!!
       </header>
       <Suspense fallback={null}>
         <Outlet />
