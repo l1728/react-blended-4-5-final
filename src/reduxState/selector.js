@@ -10,11 +10,13 @@ export const selectIsLoading = state => state.currency.isLoading;
 
 export const selectRates = state => state.currency.rates;
 
+export const selectFilter = state => state.filter.value;
+
 export const selectFilteredRates = createSelector(
-  [selectCurrentCurrency, selectRates],
-  (baseCurrency, rates) => {
+  [selectCurrentCurrency, selectRates, selectFilter],
+  (baseCurrency, rates, filter) => {
     return rates
-      .filter(([key]) => key !== baseCurrency)
+      .filter(([key]) => key !== baseCurrency  && key.toLowerCase().includes(filter.toLowerCase()))
       .map(([key, value]) => ({ key, value: (1 / value).toFixed(2) }));
   },
 );
